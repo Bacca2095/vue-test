@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import { AuthActions } from "../enums/auth-actions.enum";
-import AppLayout from "../layouts/AppLayout.vue";
-import AuthLayout from "../layouts/AuthLayout.vue";
+import AppLayout from "@/layouts/AppLayout.vue";
+import AuthLayout from "@/layouts/AuthLayout.vue";
 import store from "../store";
 
 export enum RoutesName {
@@ -41,8 +41,8 @@ const routes: RouteRecordRaw[] = [
         /* webpackChunkName: "not-found" */ "../views/not-found/NotFound.vue"
       ),
     meta: {
-      requireAuth: true,
-      noRequireAuth: true,
+      requireAuth: false,
+      noRequireAuth: false,
     },
   },
   {
@@ -58,18 +58,22 @@ const router = createRouter({
 
 const validateSession = (): boolean => !!store().getToken;
 router.beforeEach((to, from, next) => {
-  if (
+  const redirectToAuth: boolean =
     to.name !== RoutesName.AUTH &&
     !validateSession() &&
-    to.matched.some((record) => record.meta.requireAuth)
-  ) {
+    to.matched.some((record) => record.meta.requireAuth);
+
+  const redirectToHome: boolean =
+    validateSession() && to.matched.some((record) => record.meta.noRequireAuth);
+
+  if (redirectToAuth) {
     next({ name: RoutesName.AUTH, params: { action: AuthActions.SIGN_IN } });
-  } else if (
-    validateSession() &&
-    to.matched.some((record) => record.meta.noRequireAuth)
-  ) {
+  }
+  if (redirectToHome) {
     next({ name: RoutesName.HOME });
-  } else next();
+  }
+
+  next();
 });
 
 export default router;
