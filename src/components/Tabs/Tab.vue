@@ -24,16 +24,12 @@ import { PropType, ref } from 'vue';
 import { AuthActions } from '../../enums/auth-actions.enum';
 import { TabData } from '../../interfaces/tab-data.interface';
 
-const props = defineProps({
-  tabs: {
-    type: Array as PropType<TabData[]>,
-    required: true,
-  },
-  selected: {
-    type: String,
-    required: true,
-  },
-});
+interface TabProps {
+  tabs: TabData[];
+  selected: string;
+}
+
+const props = defineProps<TabProps>();
 
 const tabs: TabData[] = props.tabs;
 
