@@ -1,5 +1,5 @@
 <template>
-    <main class="auth-layout bg-secondary">
+    <main class="auth-layout bg-tertiary">
         <slot></slot>
     </main>
 </template>

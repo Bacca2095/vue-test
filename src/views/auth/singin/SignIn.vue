@@ -1,6 +1,6 @@
 <template>
     <form>
-        <Button></Button>
+        <Button text="Hola"></Button>
     </form>
 </template>
 
