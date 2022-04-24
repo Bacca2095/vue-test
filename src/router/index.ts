@@ -2,13 +2,8 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import { AuthActions } from "../enums/auth-actions.enum";
 import AppLayout from "@/layouts/AppLayout.vue";
 import AuthLayout from "@/layouts/AuthLayout.vue";
-import store from "../store";
-
-export enum RoutesName {
-  AUTH = "auth",
-  HOME = "home",
-  NOT_FOUND = "not-found",
-}
+import { useDefaultStore } from "../store/default-store";
+import { RoutesName } from "../enums/routes-name.enum";
 
 const routes: RouteRecordRaw[] = [
   {
@@ -56,7 +51,7 @@ const router = createRouter({
   routes,
 });
 
-const validateSession = (): boolean => !!store().getToken;
+const validateSession = (): boolean => !!useDefaultStore().getUserEmail;
 router.beforeEach((to, from, next) => {
   const redirectToAuth: boolean =
     to.name !== RoutesName.AUTH &&
@@ -66,14 +61,16 @@ router.beforeEach((to, from, next) => {
   const redirectToHome: boolean =
     validateSession() && to.matched.some((record) => record.meta.noRequireAuth);
 
+  if (!redirectToAuth && !redirectToHome) {
+    next();
+  }
+
   if (redirectToAuth) {
     next({ name: RoutesName.AUTH, params: { action: AuthActions.SIGN_IN } });
   }
   if (redirectToHome) {
     next({ name: RoutesName.HOME });
   }
-
-  next();
 });
 
 export default router;
