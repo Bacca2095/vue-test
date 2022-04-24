@@ -5,9 +5,9 @@
       :error="$v.firstName.$errors[0]?.$validator ?? null" />
     <Input v-model="$v.lastName.$model" placeholder="Doe" label="APELLIDO"
       :invalid="$v.lastName.$dirty ? $v.lastName.$invalid : null" :error="$v.lastName.$errors[0]?.$validator ?? null" />
-    <Input v-model="$v.email.$model" placeholder="ejemplo@email.com" label="EMAIL"
+    <Input type="email" v-model="$v.email.$model" placeholder="ejemplo@email.com" label="EMAIL"
       :invalid="$v.email.$dirty ? $v.email.$invalid : null" :error="$v.email.$errors[0]?.$validator ?? null" />
-    <Input v-model="$v.password.$model" placeholder="*******" label="CONTRASEÑA"
+    <Input type="password" v-model="$v.password.$model" placeholder="*******" label="CONTRASEÑA"
       :invalid="$v.password.$dirty ? $v.password.$invalid : null" :error="$v.password.$errors[0]?.$validator ?? null" />
     <div class="mx-4">
       <Button text="Registro" type="submit" />

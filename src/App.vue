@@ -1,10 +1,5 @@
-<script setup lang="ts">
-import { useRoute } from 'vue-router';
-
-const route = useRoute();
-</script>
-
 <template>
+  <Sidebar />
   <router-view v-slot="{ Component }">
     <component :is="route.meta.layout || 'div'">
       <component :is="Component" />
@@ -12,6 +7,13 @@ const route = useRoute();
   </router-view>
 </template>
 
-<style lang="scss" >
+<script setup lang="ts">
+import { useRoute } from 'vue-router';
+import Sidebar from '@/components/Sidebar.vue';
+
+const route = useRoute();
+</script>
+
+<style lang="scss">
 @import './assets/scss/index.scss';
 </style>

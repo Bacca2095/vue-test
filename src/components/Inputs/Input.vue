@@ -1,7 +1,7 @@
 <template>
   <div class="relative z-0 mb-6 w-10/12 group mx-auto">
     <label class="text-md text-gray-300">{{ props.label }}</label>
-    <input :value="modelValue" @input="updateValue" :placeholder="placeholder" :type="type"
+    <input :value="modelValue" @input="updateValue" :placeholder="placeholder" :type="type ?? 'text'"
       class="py-1.5 px-0 w-full text-sm text-gray-100 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-secondary" />
     <small v-if="invalid" class="float-right text-secondary">{{
         error?.toUpperCase()
@@ -16,7 +16,7 @@ interface InputProps {
   modelValue: string;
   label: string;
   placeholder: string;
-  type: string;
+  type?: string;
   invalid: boolean | null;
   error: string | null;
 }
