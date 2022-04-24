@@ -12,7 +12,7 @@ export enum RoutesName {
 
 const routes: RouteRecordRaw[] = [
   {
-    path: `/${RoutesName.HOME}`,
+    path: `/`,
     name: RoutesName.HOME,
     component: () =>
       import(/* webpackChunkName: "home" */ "../views/home/Home.vue"),
