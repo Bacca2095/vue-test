@@ -3,7 +3,7 @@
     <ul class="flex flex-wrap text-md font-medium text-center text-gray-500 dark:border-gray-700 dark:text-gray-400">
       <li v-for="tab in tabs">
         <button @click="changeSelectedTab(tab.action)"
-          class="inline-block px-10 py-4 fade text-xl text-white bg-primary rounded-t-md after:border-0" :class="{
+          class="inline-block px-10 py-3 fade text-xl text-white bg-primary rounded-t-md after:border-0" :class="{
             'bg-opacity-30': !isSelectedTab(tab.action),
             'bg-opacity-90': isSelectedTab(tab.action),
           }">

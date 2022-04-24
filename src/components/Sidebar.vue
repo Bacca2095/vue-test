@@ -5,8 +5,9 @@
     </button>
     <Transition name="fade" mode="out-in" :duration="700">
         <aside v-if="showSidebar" class="z-40">
+            <img class="fixed top-0 top z-0" src="../assets/svg/background/top.svg" />
             <div class="overflow-y-auto bg-tertiary">
-                <div class="text-white text-9xl text-center">R</div>
+                <img class="my-auto mx-auto mt-10 z-10" src="../assets/svg/logo.svg" />
                 <ul>
                     <li v-for="route in routes" class="flex py-2" @click="setActiveRoute(route.text)">
                         <small class="my-auto" :class="{ active: isActiveRoute(route.text) }"></small>

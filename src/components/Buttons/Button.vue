@@ -1,5 +1,5 @@
 <template>
-    <button :type="type" class="bg-gradient-to-r from-secondary-light to-secondary rounded-3xl py-2 px-6 w-full my-4">
+    <button :type="type" class="bg-gradient-to-r from-secondary-light to-secondary rounded-3xl py-1 px-6 w-full my-4">
         {{ props.text }}
     </button>
 </template>

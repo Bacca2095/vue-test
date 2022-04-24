@@ -1,13 +1,16 @@
 <template>
-  <Tab :tabs="tabs" :selected="action" v-if="!showSuccessLogo" />
-  <Transition name="fade" mode="out-in">
-    <div v-if="showSuccessLogo" class="success-logo w-3/4 md:w-2/6 lg:w-3/12 bg-secondary h-5/6 rounded-b-md shadow-md">
-      <div class="mt-16">
-        <p class="text-center text-xl mb-6">SUCCESS</p>
-        <img class="mx-auto" src="../../assets/svg/success_logo.svg" alt="success-logo" width="110" />
+  <div class="z-20">
+    <Tab :tabs="tabs" :selected="action" v-if="!showSuccessLogo" />
+    <Transition name="fade" mode="out-in">
+      <div v-if="showSuccessLogo"
+        class="success-logo w-3/4 md:w-2/6 lg:w-3/12 bg-secondary h-4/6 rounded-b-md shadow-md z-10">
+        <div class="mt-16">
+          <p class="text-center text-xl mb-6">SUCCESS</p>
+          <img class="mx-auto" src="../../assets/svg/success_logo.svg" alt="success-logo" width="110" />
+        </div>
       </div>
-    </div>
-  </Transition>
+    </Transition>
+  </div>
 </template>
 
 <script setup lang="ts">
