@@ -2,7 +2,9 @@
   <Sidebar />
   <router-view v-slot="{ Component }">
     <component :is="route.meta.layout || 'div'">
-      <component :is="Component" />
+      <Transition name="fade" mode="out-in">
+        <component :is="Component" />
+      </Transition>
     </component>
   </router-view>
 </template>

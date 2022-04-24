@@ -13,7 +13,9 @@
     </ul>
     <div class="tab-content bg-primary bg-opacity-90 rounded-b-md" id="tabs-tabContent">
       <div class="tab-pane fade text-white" id="tabs-home" role="tabpanel" aria-labelledby="tabs-home-tab">
-        <component :is="getComponentTab()?.component || 'div'" />
+        <Transition name="fade" mode="out-in">
+          <component :is="getComponentTab()?.component || 'div'" />
+        </Transition>
       </div>
     </div>
   </div>
