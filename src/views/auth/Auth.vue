@@ -9,13 +9,13 @@
 </template>
 
 <script setup lang="ts">
-import Tab from '@/components/Tabs/Tab.vue';
-import { AuthActions } from '../../enums/auth-actions.enum';
-import { TabData } from '../../interfaces/tab-data.interface';
-import SignIn from '@/views/auth/singin/SignIn.vue';
-import SignUp from '@/views/auth/singup/SignUp.vue';
 import { useRoute } from 'vue-router';
 import { ref, toRef } from 'vue';
+import Tab from '@/components/tabs/Tab.vue';
+import SignIn from '@/views/auth/components/sing-in/SignIn.vue';
+import SignUp from '@/views/auth/components/sing-up/SignUp.vue';
+import { AuthActions } from '../../enums/auth-actions.enum';
+import { TabData } from '../../interfaces/tab-data.interface';
 import { useDefaultStore } from '../../store/default-store';
 
 const route = useRoute();
