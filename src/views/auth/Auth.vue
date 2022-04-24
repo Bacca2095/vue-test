@@ -1,5 +1,11 @@
 <template>
-  <Tab :tabs="tabs" :selected="action" />
+  <Tab :tabs="tabs" :selected="action" v-if="!showSuccessLogo" />
+  <div v-if="showSuccessLogo" class="success-logo w-3/4 md:w-2/6 lg:w-3/12 bg-secondary h-5/6 rounded-b-md shadow-md">
+    <div class="mt-16">
+      <p class="text-center text-xl mb-6">SUCCESS</p>
+      <img class="mx-auto" src="../../assets/svg/success_logo.svg" alt="success-logo" width="110" />
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -9,9 +15,13 @@ import { TabData } from '../../interfaces/tab-data.interface';
 import SignIn from '@/views/auth/singin/SignIn.vue';
 import SignUp from '@/views/auth/singup/SignUp.vue';
 import { useRoute } from 'vue-router';
-import { ref } from 'vue';
+import { ref, toRef } from 'vue';
+import { useDefaultStore } from '../../store/default-store';
 
 const route = useRoute();
+const store = useDefaultStore();
+
+const showSuccessLogo = toRef(store, 'getShowSuccessLogo');
 
 const action = ref(route.params.action);
 
@@ -21,5 +31,8 @@ const tabs: TabData[] = [
 ];
 </script>
 
-<style>
+<style scoped>
+.success-logo {
+  display: grid;
+}
 </style>
