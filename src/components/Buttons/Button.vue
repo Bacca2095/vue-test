@@ -1,6 +1,12 @@
 <template>
-    <button :type="type" class="bg-gradient-to-r from-secondary-light to-secondary rounded-3xl py-1 px-6 w-full my-4">
-        {{ props.text }}
+    <button :type="type" :class="{
+        'bg-gradient-to-r': isSecondaryGradientVariant(),
+        'from-secondary-light': isSecondaryGradientVariant(),
+        'to-secondary': isSecondaryGradientVariant(),
+        'bg-black': !isSecondaryGradientVariant(),
+        'rounded-3xl': isSecondaryGradientVariant(),
+    }" class="text-white py-2 px-6 w-full my-4">
+        <span> {{ props.text }}</span>
     </button>
 </template>
 
@@ -10,13 +16,23 @@ enum ButtonType {
     BUTTON = 'button',
     RESET = 'reset',
 }
+
+enum ButtonVariants {
+    SECONDARY_GRADIENT = 'secondary-gradient',
+    BLACK = 'black',
+}
+
 interface ButtonProps {
     text: string;
     type: ButtonType;
+    variant: string;
 }
 
 const props = defineProps<ButtonProps>();
+
+const isSecondaryGradientVariant = () =>
+    props.variant === ButtonVariants.SECONDARY_GRADIENT;
 </script>
 
-<style>
+<style scoped>
 </style>

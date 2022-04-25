@@ -6,7 +6,7 @@
 
 <script setup lang="ts"></script>
 
-<style>
+<style scoped>
 .not-found {
   display: grid;
   width: 100%;

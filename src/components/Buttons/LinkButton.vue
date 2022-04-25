@@ -12,5 +12,5 @@ interface ButtonProps {
 const props = defineProps<ButtonProps>();
 </script>
 
-<style>
+<style scoped>
 </style>

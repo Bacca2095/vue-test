@@ -11,7 +11,7 @@
 
 <script setup lang="ts"></script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .auth-layout {
   display: grid;
   height: 100vh;

@@ -11,3 +11,18 @@
 .fade-leave-to {
   opacity: 0;
 }
+
+::-webkit-scrollbar {
+    opacity: 0;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 1rem;
+    background: transparent;
+}
+::-webkit-scrollbar:hover {
+    opacity: 1;
+}
+:hover::-webkit-scrollbar-thumb {
+    border-radius: 1rem !important;
+    background-color: #65717c !important;
+}

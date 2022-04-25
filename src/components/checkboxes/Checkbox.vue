@@ -26,7 +26,7 @@ const updateValue = (event: any) => {
 };
 </script>
 
-<style>
+<style scoped>
 .active-dot {
     transform: translateX(100%);
     background-color: #37d0c8;

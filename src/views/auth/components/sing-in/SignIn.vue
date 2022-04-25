@@ -68,5 +68,5 @@ const onSubmit = async (event: Event) => {
 };
 </script>
 
-<style>
-</style>
+<style scoped>
+</style
