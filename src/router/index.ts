@@ -1,18 +1,13 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import { AuthActions } from "../enums/auth-actions.enum";
-import AppLayout from "../layouts/AppLayout.vue";
-import AuthLayout from "../layouts/AuthLayout.vue";
-import store from "../store";
-
-export enum RoutesName {
-  AUTH = "auth",
-  HOME = "home",
-  NOT_FOUND = "not-found",
-}
+import AppLayout from "@/layouts/AppLayout.vue";
+import AuthLayout from "@/layouts/AuthLayout.vue";
+import { useDefaultStore } from "../store/default-store";
+import { RoutesName } from "../enums/routes-name.enum";
 
 const routes: RouteRecordRaw[] = [
   {
-    path: `/${RoutesName.HOME}`,
+    path: `/`,
     name: RoutesName.HOME,
     component: () =>
       import(/* webpackChunkName: "home" */ "../views/home/Home.vue"),
@@ -41,8 +36,8 @@ const routes: RouteRecordRaw[] = [
         /* webpackChunkName: "not-found" */ "../views/not-found/NotFound.vue"
       ),
     meta: {
-      requireAuth: true,
-      noRequireAuth: true,
+      requireAuth: false,
+      noRequireAuth: false,
     },
   },
   {
@@ -56,20 +51,26 @@ const router = createRouter({
   routes,
 });
 
-const validateSession = (): boolean => !!store().getToken;
+const validateSession = (): boolean => !!useDefaultStore().getUserEmail;
 router.beforeEach((to, from, next) => {
-  if (
+  const redirectToAuth: boolean =
     to.name !== RoutesName.AUTH &&
     !validateSession() &&
-    to.matched.some((record) => record.meta.requireAuth)
-  ) {
+    to.matched.some((record) => record.meta.requireAuth);
+
+  const redirectToHome: boolean =
+    validateSession() && to.matched.some((record) => record.meta.noRequireAuth);
+
+  if (!redirectToAuth && !redirectToHome) {
+    next();
+  }
+
+  if (redirectToAuth) {
     next({ name: RoutesName.AUTH, params: { action: AuthActions.SIGN_IN } });
-  } else if (
-    validateSession() &&
-    to.matched.some((record) => record.meta.noRequireAuth)
-  ) {
+  }
+  if (redirectToHome) {
     next({ name: RoutesName.HOME });
-  } else next();
+  }
 });
 
 export default router;

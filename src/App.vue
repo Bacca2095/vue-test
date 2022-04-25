@@ -1,17 +1,23 @@
-<script setup lang="ts">
-import { useRoute } from 'vue-router';
-
-const route = useRoute();
-</script>
-
 <template>
+  <Sidebar v-if="!store.getUserEmail" />
   <router-view v-slot="{ Component }">
     <component :is="route.meta.layout || 'div'">
-      <component :is="Component" />
+      <Transition name="fade" mode="out-in">
+        <component :is="Component" />
+      </Transition>
     </component>
   </router-view>
 </template>
 
-<style lang="scss" >
+<script setup lang="ts">
+import { useRoute } from 'vue-router';
+import Sidebar from '@/components/Sidebar.vue';
+import { useDefaultStore } from './store/default-store';
+
+const route = useRoute();
+const store = useDefaultStore();
+</script>
+
+<style lang="scss">
 @import './assets/scss/index.scss';
 </style>
