@@ -2,9 +2,11 @@
   <main class="auth-layout bg-tertiary">
     <img class="fixed top-0 top z-0" src="../assets/svg/background/top.svg" />
     <img class="fixed right-0 right z-0" src="../assets/svg/background/right.svg" />
-    <img class="fixed -left-16 md:-left-12 left z-0" src="../assets/svg/background/left.svg" />
+    <img
+      class="fixed -left-16 md:-left-12 left z-0"
+      src="../assets/svg/background/left.svg"
+    />
     <img class="my-auto mx-auto mt-10 z-10" src="../assets/svg/logo.svg" />
-    <!--  <div class="text-white text-9xl">R</div> -->
     <slot></slot>
   </main>
 </template>
