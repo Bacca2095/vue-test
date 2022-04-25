@@ -11,7 +11,7 @@
     </div>
 
     <div class="mx-4">
-      <Button text="Ingreso" type="submit" />
+      <Button text="Ingreso" type="submit" variant="secondary-gradient" />
     </div>
 
     <div class="text-center pb-3">
@@ -60,13 +60,13 @@ const onSubmit = async (event: Event) => {
     store.signIn(signInForm.email);
     store.$state.showSuccessLogo = true;
 
-    setTimeout(() => {
+    /* setTimeout(() => {
       store.$state.showSuccessLogo = true;
       router.push({ name: RoutesName.HOME });
-    }, 2000);
+    }, 2000); */
   }
 };
 </script>
 
 <style scoped>
-</style
+</style>

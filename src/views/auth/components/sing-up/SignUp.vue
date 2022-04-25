@@ -10,7 +10,7 @@
     <Input type="password" v-model="$v.password.$model" placeholder="*******" label="CONTRASEÑA"
       :invalid="$v.password.$dirty ? $v.password.$invalid : null" :error="$v.password.$errors[0]?.$validator ?? null" />
     <div class="mx-4">
-      <Button text="Registro" type="submit" />
+      <Button text="Registro" type="submit" variant="secondary-gradient" />
     </div>
   </form>
 </template>
